@@ -30,7 +30,6 @@ public class ZombieToast extends Enemy {
                 } else {
                         this.movementStrategy = new RandomMovement();
                         nextPos = movementStrategy.move(this, game);
-                        ;
                         map.moveTo(this, nextPos);
 
                 }
