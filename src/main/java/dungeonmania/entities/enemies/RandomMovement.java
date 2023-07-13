@@ -9,8 +9,8 @@ import dungeonmania.map.GameMap;
 import dungeonmania.util.Position;
 
 public class RandomMovement implements MovementStrategy {
-        private Random randGen = new Random();        
-        
+        private Random randGen = new Random();
+
         @Override
         public Position move(Enemy enemy, Game game) {
                 GameMap map = game.getMap();
@@ -20,8 +20,7 @@ public class RandomMovement implements MovementStrategy {
                         return enemy.getPosition();
                 } else {
                         return pos.get(randGen.nextInt(pos.size()));
-        }
+                }
         }
 
-        
 }

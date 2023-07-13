@@ -14,33 +14,32 @@ public class PlayerMovementStrategy implements MovementStrategy {
                 GameMap map = game.getMap();
                 Player player = game.getPlayer();
                 Position plrDiff = Position.calculatePositionBetween(player.getPosition(), enemy.getPosition());
-        
+
                 Position moveX = (plrDiff.getX() >= 0) ? Position.translateBy(enemy.getPosition(), Direction.RIGHT)
-                        : Position.translateBy(enemy.getPosition(), Direction.LEFT);
+                                : Position.translateBy(enemy.getPosition(), Direction.LEFT);
                 Position moveY = (plrDiff.getY() >= 0) ? Position.translateBy(enemy.getPosition(), Direction.UP)
-                        : Position.translateBy(enemy.getPosition(), Direction.DOWN);
+                                : Position.translateBy(enemy.getPosition(), Direction.DOWN);
                 Position offset = enemy.getPosition();
                 if (plrDiff.getY() == 0 && map.canMoveTo(enemy, moveX))
-                    offset = moveX;
+                        offset = moveX;
                 else if (plrDiff.getX() == 0 && map.canMoveTo(enemy, moveY))
-                    offset = moveY;
+                        offset = moveY;
                 else if (Math.abs(plrDiff.getX()) >= Math.abs(plrDiff.getY())) {
-                    if (map.canMoveTo(enemy, moveX))
-                        offset = moveX;
-                    else if (map.canMoveTo(enemy, moveY))
-                        offset = moveY;
-                    else
-                        offset = enemy.getPosition();
+                        if (map.canMoveTo(enemy, moveX))
+                                offset = moveX;
+                        else if (map.canMoveTo(enemy, moveY))
+                                offset = moveY;
+                        else
+                                offset = enemy.getPosition();
                 } else {
-                    if (map.canMoveTo(enemy, moveY))
-                        offset = moveY;
-                    else if (map.canMoveTo(enemy, moveX))
-                        offset = moveX;
-                    else
-                        offset = enemy.getPosition();
+                        if (map.canMoveTo(enemy, moveY))
+                                offset = moveY;
+                        else if (map.canMoveTo(enemy, moveX))
+                                offset = moveX;
+                        else
+                                offset = enemy.getPosition();
                 }
                 return offset;
-
 
         }
 

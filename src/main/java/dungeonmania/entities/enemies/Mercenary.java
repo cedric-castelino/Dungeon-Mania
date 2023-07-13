@@ -10,6 +10,7 @@ import dungeonmania.entities.collectables.potions.InvincibilityPotion;
 import dungeonmania.entities.collectables.potions.InvisibilityPotion;
 import dungeonmania.map.GameMap;
 import dungeonmania.util.Position;
+
 public class Mercenary extends Enemy implements Interactable {
         public static final int DEFAULT_BRIBE_AMOUNT = 1;
         public static final int DEFAULT_BRIBE_RADIUS = 1;
@@ -90,9 +91,10 @@ public class Mercenary extends Enemy implements Interactable {
                 } else if (map.getPlayer().getEffectivePotion() instanceof InvisibilityPotion) {
                         // Move random                        
                         this.movementStrategy = new RandomMovement();
-                        nextPos = movementStrategy.move(this, game);;
+                        nextPos = movementStrategy.move(this, game);
+                        ;
                         map.moveTo(this, nextPos);
-                        
+
                 } else if (map.getPlayer().getEffectivePotion() instanceof InvincibilityPotion) {
                         this.movementStrategy = new PlayerMovementStrategy();
                         Position offset = movementStrategy.move(this, game);
