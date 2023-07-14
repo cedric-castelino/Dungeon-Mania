@@ -4,6 +4,7 @@ import dungeonmania.Game;
 import dungeonmania.battles.BattleStatistics;
 import dungeonmania.entities.BattleItem;
 import dungeonmania.entities.Entity;
+import dungeonmania.entities.OverlapMethod;
 import dungeonmania.entities.Player;
 import dungeonmania.entities.inventory.InventoryItem;
 import dungeonmania.map.GameMap;
@@ -32,11 +33,7 @@ public class Sword extends Entity implements InventoryItem, BattleItem {
 
     @Override
     public void onOverlap(GameMap map, Entity entity) {
-        if (entity instanceof Player) {
-            if (!((Player) entity).pickUp(this))
-                return;
-            map.destroyEntity(this);
-        }
+        OverlapMethod.overLapMethod(map, entity, this);
     }
 
     @Override

@@ -1,13 +1,13 @@
 package dungeonmania.entities;
 
-import dungeonmania.entities.inventory.InventoryItem;
+import dungeonmania.map.GameMap;
 
 public class OverlapMethod {
-        public boolean overLapMethod(Player player, Entity item) {
-                if (item instanceof InventoryItem) {
-                        if (!((Player) player).pickUp(item))
-                                return false;
+        public static void overLapMethod(GameMap map, Entity entity, Entity item) {
+                if (entity instanceof Player) {
+                        if (!((Player) entity).pickUp(item))
+                                return;
+                        map.destroyEntity(item);
                 }
-                return true;
         }
 }
