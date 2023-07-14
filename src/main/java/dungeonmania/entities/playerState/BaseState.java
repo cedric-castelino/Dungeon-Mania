@@ -7,6 +7,8 @@ public class BaseState extends PlayerState {
         super(player, false, false);
     }
 
+    Player player = getPlayer();
+
     @Override
     public void transitionBase() {
         // Do nothing
@@ -14,13 +16,11 @@ public class BaseState extends PlayerState {
 
     @Override
     public void transitionInvincible() {
-        Player player = getPlayer();
         player.changeState(new InvincibleState(player));
     }
 
     @Override
     public void transitionInvisible() {
-        Player player = getPlayer();
         player.changeState(new InvisibleState(player));
     }
 }
