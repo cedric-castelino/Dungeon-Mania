@@ -7,21 +7,20 @@ public class InvisibleState extends PlayerState {
         super(player, false, true);
     }
 
+    Player player = getPlayer();
+
     @Override
     public void transitionBase() {
-        Player player = getPlayer();
         player.changeState(new BaseState(player));
     }
 
     @Override
     public void transitionInvincible() {
-        Player player = getPlayer();
         player.changeState(new InvincibleState(player));
     }
 
     @Override
     public void transitionInvisible() {
-        Player player = getPlayer();
         player.changeState(new InvisibleState(player));
     }
 }
