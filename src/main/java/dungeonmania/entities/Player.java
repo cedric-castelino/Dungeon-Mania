@@ -162,11 +162,19 @@ public class Player extends Entity implements Battleable {
 
     public BattleStatistics applyBuff(BattleStatistics origin) {
         if (state.isInvincible()) {
-            return BattleStatistics.applyBuff(origin, new BattleStatistics(0, 0, 0, 1, 1, true, true));
+            return BattleStatistics.applyBuff(origin, createNewInvincibleBuff());
         } else if (state.isInvisible()) {
-            return BattleStatistics.applyBuff(origin, new BattleStatistics(0, 0, 0, 1, 1, false, false));
+            return BattleStatistics.applyBuff(origin, createNewInvisibleBuff());
         }
         return origin;
+    }
+
+    public BattleStatistics createNewInvincibleBuff() {
+        return new BattleStatistics(0, 0, 0, 1, 1, true, true);
+    }
+
+    public BattleStatistics createNewInvisibleBuff() {
+        return new BattleStatistics(0, 0, 0, 1, 1, false, false);
     }
 
 }
