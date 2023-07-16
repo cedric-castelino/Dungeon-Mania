@@ -6,7 +6,7 @@ public class InvincibleState extends PlayerState {
     public InvincibleState(Player player) {
         super(player, true, false);
     }
-    Player player = getPlayer();
+    private Player player = getPlayer();
 
     @Override
     public void transitionBase() {

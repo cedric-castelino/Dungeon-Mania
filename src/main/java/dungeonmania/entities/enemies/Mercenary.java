@@ -88,13 +88,13 @@ public class Mercenary extends Enemy implements Interactable {
                                         : map.dijkstraPathFind(getPosition(), player.getPosition(), this);
                         if (!isAdjacentToPlayer && Position.isAdjacent(player.getPosition(), nextPos))
                                 isAdjacentToPlayer = true;
-                } else if (map.getPlayer().getEffectivePotion() instanceof InvisibilityPotion) {
+                } else if (player.getEffectivePotion() instanceof InvisibilityPotion) {
                         // Move random
                         this.movementStrategy = new RandomMovement();
                         nextPos = movementStrategy.move(this, game);
                         map.moveTo(this, nextPos);
 
-                } else if (map.getPlayer().getEffectivePotion() instanceof InvincibilityPotion) {
+                } else if (player.getEffectivePotion() instanceof InvincibilityPotion) {
                         this.movementStrategy = new PlayerMovementStrategy();
                         Position offset = movementStrategy.move(this, game);
                         nextPos = offset;

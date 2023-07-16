@@ -7,7 +7,7 @@ public class BaseState extends PlayerState {
         super(player, false, false);
     }
 
-    Player player = getPlayer();
+    private Player player = getPlayer();
 
     @Override
     public void transitionBase() {

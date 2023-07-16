@@ -7,7 +7,7 @@ public class InvisibleState extends PlayerState {
         super(player, false, true);
     }
 
-    Player player = getPlayer();
+    private Player player = getPlayer();
 
     @Override
     public void transitionBase() {
