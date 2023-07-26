@@ -6,11 +6,33 @@ public abstract class PlayerState {
     private Player player;
     private boolean isInvincible = false;
     private boolean isInvisible = false;
+    private State invincibleState;
+    private State baseState;
+    private State invisibleState;
+    private State state;
 
-    PlayerState(Player player, boolean isInvincible, boolean isInvisible) {
+    public PlayerState(Player player, boolean isInvincible, boolean isInvisible) {
         this.player = player;
         this.isInvincible = isInvincible;
         this.isInvisible = isInvisible;
+
+        invincibleState = new InvincibleState(this);
+        invisibleState = new InvisibleState(this);
+        baseState = new BaseState(this);
+
+        if (isInvincible) {
+            this.state = invincibleState;
+        } else if (isInvisible) {
+            this.state = invisibleState;
+        } else {
+            this.state = baseState;
+        }
+
+    }
+
+    public void changeState(State state) {
+        this.state = state;
+
     }
 
     public boolean isInvincible() {
@@ -25,9 +47,22 @@ public abstract class PlayerState {
         return player;
     }
 
-    public abstract void transitionInvisible();
+    public State getInvincibleState() {
+        return invincibleState;
+    }
 
-    public abstract void transitionInvincible();
+    public State getBaseState() {
+        return baseState;
+    }
 
-    public abstract void transitionBase();
+    public State getInvisibleState() {
+        return invisibleState;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    
+
 }

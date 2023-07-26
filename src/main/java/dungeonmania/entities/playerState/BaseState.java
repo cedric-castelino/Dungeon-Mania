@@ -2,12 +2,12 @@ package dungeonmania.entities.playerState;
 
 import dungeonmania.entities.Player;
 
-public class BaseState extends PlayerState {
-    public BaseState(Player player) {
-        super(player, false, false);
-    }
+public class BaseState implements State {
+    private PlayerState playerState;
 
-    private Player player = getPlayer();
+    public BaseState(PlayerState state) {
+        this.playerState = state;
+    }
 
     @Override
     public void transitionBase() {
@@ -16,11 +16,11 @@ public class BaseState extends PlayerState {
 
     @Override
     public void transitionInvincible() {
-        player.changeState(new InvincibleState(player));
+        playerState.changeState(playerState.getInvincibleState());
     }
 
     @Override
     public void transitionInvisible() {
-        player.changeState(new InvisibleState(player));
+        playerState.changeState(playerState.getInvisibleState());
     }
 }

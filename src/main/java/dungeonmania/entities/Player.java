@@ -38,7 +38,7 @@ public class Player extends Entity implements Battleable {
         battleStatistics = new BattleStatistics(health, attack, 0, BattleStatistics.DEFAULT_DAMAGE_MAGNIFIER,
                 BattleStatistics.DEFAULT_PLAYER_DAMAGE_REDUCER);
         inventory = new Inventory();
-        state = new BaseState(this);
+        state = new PlayerState(this);
     }
 
     public int getCollectedTreasureCount() {
