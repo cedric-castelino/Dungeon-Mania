@@ -20,4 +20,9 @@ public class Collectables extends Entity implements InventoryItem {
                 }
         }
 
+        @Override
+        public boolean canMoveOnto(GameMap map, Entity entity) {
+                return true;
+        }
+
 }
