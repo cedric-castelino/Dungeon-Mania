@@ -4,6 +4,7 @@ import dungeonmania.Game;
 import dungeonmania.entities.collectables.potions.InvincibilityPotion;
 import dungeonmania.map.GameMap;
 import dungeonmania.util.Position;
+import dungeonmania.entities.Player;
 
 public class ZombieToast extends Enemy {
         public static final double DEFAULT_HEALTH = 5.0;
@@ -23,7 +24,8 @@ public class ZombieToast extends Enemy {
         public void move(Game game) {
                 Position nextPos;
                 GameMap map = game.getMap();
-                if (map.getPlayer().getEffectivePotion() instanceof InvincibilityPotion) {
+                Player player = game.getPlayer();
+                if (player.getEffectivePotion() instanceof InvincibilityPotion) {
                         this.movementStrategy = new PlayerMovementStrategy();
                         Position offset = movementStrategy.move(this, game);
                         nextPos = offset;
@@ -33,7 +35,7 @@ public class ZombieToast extends Enemy {
                         map.moveTo(this, nextPos);
 
                 }
-                game.getMap().moveTo(this, nextPos);
+                map.moveTo(this, nextPos);
 
         }
 
