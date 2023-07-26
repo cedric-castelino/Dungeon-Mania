@@ -17,13 +17,21 @@ public class Shield extends Buildable {
     public void use(Game game) {
         durability--;
         if (durability <= 0) {
-            game.getPlayer().remove(this);
+            destroyItem(game);
         }
     }
 
     @Override
     public BattleStatistics applyBuff(BattleStatistics origin) {
-        return BattleStatistics.applyBuff(origin, new BattleStatistics(0, 0, defence, 1, 1));
+        return BattleStatistics.applyBuff(origin, createNewBattleStatistics());
+    }
+
+    private BattleStatistics createNewBattleStatistics() {
+        return new BattleStatistics(0, 0, defence, 1, 1);
+    }
+
+    private void destroyItem(Game game) {
+        game.getPlayer().remove(this);
     }
 
     @Override

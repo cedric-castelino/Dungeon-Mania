@@ -109,6 +109,7 @@ public class Inventory {
         return getFirst(Sword.class) != null || getFirst(Bow.class) != null;
     }
 
+
     public BattleItem getWeapon() {
         BattleItem weapon = getFirst(Sword.class);
         if (weapon == null)
