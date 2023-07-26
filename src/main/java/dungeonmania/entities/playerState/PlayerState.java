@@ -1,50 +1,36 @@
 package dungeonmania.entities.playerState;
 
 import dungeonmania.entities.Player;
+import dungeonmania.entities.collectables.potions.InvincibilityPotion;
 
 public class PlayerState {
         private Player player;
         private boolean isInvincible = false;
         private boolean isInvisible = false;
-        private State invincibleState;
-        private State baseState;
-        private State invisibleState;
-        private State state;
 
         public PlayerState(Player player, boolean isInvincible, boolean isInvisible) {
                 this.player = player;
                 this.isInvincible = isInvincible;
                 this.isInvisible = isInvisible;
 
-                invincibleState = new InvincibleState(this);
-                invisibleState = new InvisibleState(this);
-                baseState = new BaseState(this);
+        }
 
-                if (isInvincible) {
-                        this.state = invincibleState;
-                } else if (isInvisible) {
-                        this.state = invisibleState;
-                } else {
-                        this.state = baseState;
+        public void changeState(Player player, int tick) {
+                if (getPlayer().getQueue().isEmpty()) {
+                        getPlayer().setInEffective(null);
+                        player.changeState(new BaseState(player));
+                        return;
                 }
 
-        }
+                getPlayer().setInEffective(getPlayer().getQueue().remove());
 
-        public void changeState(State state) {
-                this.state = state;
+                if (getPlayer().getEffectivePotion() instanceof InvincibilityPotion) {
+                        player.changeState(new InvincibleState(player));
+                } else {
+                        player.changeState(new InvisibleState(player));
+                }
 
-        }
-
-        public void transitionBase() {
-                state.transitionBase();
-        }
-
-        public void transitionInvisible() {
-                state.transitionInvisible();
-        }
-
-        public void transitionInvincible() {
-                state.transitionInvincible();
+                getPlayer().setNextTrigger(tick + getPlayer().getEffectivePotion().getDuration());
         }
 
         public boolean isInvincible() {
@@ -57,22 +43,6 @@ public class PlayerState {
 
         public Player getPlayer() {
                 return player;
-        }
-
-        public State getInvincibleState() {
-                return invincibleState;
-        }
-
-        public State getBaseState() {
-                return baseState;
-        }
-
-        public State getInvisibleState() {
-                return invisibleState;
-        }
-
-        public State getState() {
-                return state;
         }
 
 }

@@ -1,24 +1,18 @@
 package dungeonmania.entities.playerState;
 
-public class InvincibleState implements State {
-        private PlayerState playerState;
+import dungeonmania.battles.BattleStatistics;
+import dungeonmania.entities.Player;
 
-        public InvincibleState(PlayerState state) {
-                this.playerState = state;
+public class InvincibleState extends PlayerState {
+        public InvincibleState(Player player) {
+                super(player, true, false);
         }
 
-        @Override
-        public void transitionBase() {
-                playerState.changeState(playerState.getBaseState());
+        public BattleStatistics applyBuff(BattleStatistics origin) {
+                return BattleStatistics.applyBuff(origin, createNewInvincibleBuff());
         }
 
-        @Override
-        public void transitionInvincible() {
-                playerState.changeState(playerState.getInvincibleState());
-        }
-
-        @Override
-        public void transitionInvisible() {
-                playerState.changeState(playerState.getInvisibleState());
+        public BattleStatistics createNewInvincibleBuff() {
+                return new BattleStatistics(0, 0, 0, 1, 1, true, true);
         }
 }
