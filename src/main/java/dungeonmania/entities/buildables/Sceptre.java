@@ -2,11 +2,13 @@ package dungeonmania.entities.buildables;
 
 import dungeonmania.Game;
 import dungeonmania.battles.BattleStatistics;
-import dungeonmania.util.Position;
 
 public class Sceptre extends Buildable {
-        public Sceptre(Position position) {
-                super(position);
+        private int duration;
+
+        public Sceptre(int duration) {
+                super(null);
+                this.duration = duration;
         }
 
         @Override
