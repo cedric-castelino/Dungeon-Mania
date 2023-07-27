@@ -12,7 +12,7 @@ public class Sceptre extends Buildable {
                 this.duration = duration;
         }
 
-        public void interact(Game game, Mercenary enemy) {
+        public void interactWithEnemies(Game game, Mercenary enemy) {
                 int tickCount = game.getTick();
                 enemy.setAllied(true);
                 enemy.setStopMindControlTick(tickCount + duration);

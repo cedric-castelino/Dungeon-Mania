@@ -49,7 +49,7 @@ public class Mercenary extends Enemy implements Interactable {
                 this.stopMindControlTick = stopMindControlTick;
         }
 
-        public void trackMindControl(Game game) {
+        public void checkMindControlDuration(Game game) {
                 if (game.getTick() == stopMindControlTick) {
                         setAllied(false);
                 }
@@ -91,7 +91,7 @@ public class Mercenary extends Enemy implements Interactable {
                 if (player.hasItem(Sceptre.class)) {
                         Sceptre sceptre = player.getItem(Sceptre.class);
                         setAllied(true);
-                        sceptre.interact(game, this);
+                        sceptre.interactWithEnemies(game, this);
                 } else {
                         setAllied(true);
                         bribe(player);
@@ -112,7 +112,6 @@ public class Mercenary extends Enemy implements Interactable {
                 GameMap map = game.getMap();
                 Player player = game.getPlayer();
                 if (allied) {
-                        trackMindControl(game);
                         nextPos = isAdjacentToPlayer ? player.getPreviousDistinctPosition()
                                         : map.dijkstraPathFind(getPosition(), player.getPosition(), this);
                         if (!isAdjacentToPlayer && Position.isAdjacent(player.getPosition(), nextPos))
@@ -130,6 +129,7 @@ public class Mercenary extends Enemy implements Interactable {
                         // Follow hostile
                         nextPos = map.dijkstraPathFind(getPosition(), player.getPosition(), this);
                 }
+                checkMindControlDuration(game);
                 map.moveTo(this, nextPos);
         }
 

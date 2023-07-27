@@ -260,9 +260,9 @@ public class TestUtils {
                 return l1.containsAll(l2) && l2.containsAll(l1);
         }
 
-        public static boolean alliedEntity(DungeonResponse res, String id) {
-                EntityResponse e = getEntityById(res, id).get();
-                return !e.isInteractable(); // If interactable, not allied
+        public static boolean checkifAllied(DungeonResponse res, String id) {
+                EntityResponse entity = getEntityById(res, id).get();
+                return !entity.isInteractable(); // If they are interactable, then not allied
         }
 
 }

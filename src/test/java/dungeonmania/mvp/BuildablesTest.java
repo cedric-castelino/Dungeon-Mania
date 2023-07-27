@@ -298,7 +298,7 @@ public class BuildablesTest {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();
                 DungeonResponse res = dmc.newGame("d_BuildablesTest_useSceptre", "c_BuildablesTest_useSceptre");
-                String mercId = TestUtils.getEntitiesStream(res, "mercenary").findFirst().get().getId();
+                String mercenaryId = TestUtils.getEntitiesStream(res, "mercenary").findFirst().get().getId();
                 assertEquals(1, TestUtils.getEntities(res, "mercenary").size());
 
                 // Pick up Wood
@@ -322,18 +322,18 @@ public class BuildablesTest {
 
                 // Interact with merc and assassin and sceptre is kept
                 assertEquals(1, TestUtils.getInventory(res, "sceptre").size());
-                res = assertDoesNotThrow(() -> dmc.interact(mercId));
+                res = assertDoesNotThrow(() -> dmc.interact(mercenaryId));
                 assertEquals(1, TestUtils.getInventory(res, "sceptre").size());
 
                 // Assert that enemies are now allied
-                assertEquals(true, TestUtils.alliedEntity(res, mercId));
+                assertEquals(true, TestUtils.checkifAllied(res, mercenaryId));
 
                 // Tick twice
                 res = dmc.tick(Direction.LEFT);
                 res = dmc.tick(Direction.LEFT);
 
                 // Assert mind control has finished and mercs/assassins are not allied
-                assertEquals(false, TestUtils.alliedEntity(res, mercId));
+                assertEquals(false, TestUtils.checkifAllied(res, mercenaryId));
         }
 
         @Test
