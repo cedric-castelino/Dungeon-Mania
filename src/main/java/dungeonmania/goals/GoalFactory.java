@@ -23,11 +23,14 @@ public class GoalFactory {
         case "treasure":
             int treasureGoal = config.optInt("treasure_goal", 1);
             return new Goal(new TreasureGoalState(treasureGoal));
+<<<<<<< HEAD
         case "enemies":
             int enemyGoal = config.optInt("enemy_goal", 1);
             return new Goal(new EnemiesGoalState(enemyGoal));
         case "spawner":
             return new Goal(new SpawnerGoalState());
+=======
+>>>>>>> f1e7580aed37822d9fc185c37280dcbaa41ef9f3
         default:
             return null;
         }
