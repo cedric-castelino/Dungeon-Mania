@@ -6,6 +6,7 @@ import dungeonmania.map.GameMap;
 import dungeonmania.entities.enemies.Mercenary;
 
 public class SwampTile extends Entity {
+    public static final int DEFAULT_FACTOR = 2;
     private int movementFactor;
 
     public SwampTile(Position position, int movementFactor) {
@@ -32,8 +33,8 @@ public class SwampTile extends Entity {
                 return;
             }
         }
-        // if (entity.getMovementDelay() == 0 && entity.getPreviousPosition() != entity.getPosition()) {
-        //     entity.setMovementDelay(movementFactor);
-        // }
+        if (entity.getMovementDelay() == 0 && entity.getPreviousPosition() != entity.getPosition()) {
+            entity.setMovementDelay(movementFactor);
+        }
     }
 }

@@ -172,7 +172,7 @@ public class EntityFactory {
         case "key":
             return new Key(pos, jsonEntity.getInt("key"));
         case "swamp_tile":
-            return new SwampTile(pos, config.getInt("movement_factor"));
+            return new SwampTile(pos, config.optInt("movement_factor", SwampTile.DEFAULT_FACTOR));
         default:
             return null;
         }

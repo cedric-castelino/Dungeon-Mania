@@ -93,7 +93,7 @@ public abstract class Entity {
                 previousDistinctPosition = previousPosition;
             }
         } else {
-            this.movementDelay -= 1;
+            movementDelay = movementDelay - 1;
         }
     }
 
