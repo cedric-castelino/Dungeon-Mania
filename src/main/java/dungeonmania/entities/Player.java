@@ -7,6 +7,7 @@ import java.util.Queue;
 import dungeonmania.battles.BattleStatistics;
 import dungeonmania.battles.Battleable;
 import dungeonmania.entities.collectables.Bomb;
+import dungeonmania.entities.collectables.SunStone;
 import dungeonmania.entities.collectables.Treasure;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
@@ -88,7 +89,7 @@ public class Player extends Entity implements Battleable {
     }
 
     public boolean pickUp(Entity item) {
-        if (item instanceof Treasure)
+        if (item instanceof Treasure || item instanceof SunStone)
             collectedTreasureCount++;
         return inventory.add((InventoryItem) item);
     }
@@ -180,4 +181,11 @@ public class Player extends Entity implements Battleable {
         return new BattleStatistics(0, 0, 0, 1, 1, false, false);
     }
 
+    public <T> boolean hasItem(Class<T> itemNeeded) {
+        return inventory.hasItem(itemNeeded);
+    }
+
+    public <T extends InventoryItem> T getItem(Class<T> itemNeeded) {
+        return inventory.getFirst(itemNeeded);
+    }
 }
