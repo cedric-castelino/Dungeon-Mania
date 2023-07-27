@@ -61,7 +61,7 @@ public class Inventory {
                 List<Arrow> arrows = getEntities(Arrow.class);
                 List<Sword> swords = getEntities(Sword.class);
                 List<SunStone> sunStones = getEntities(SunStone.class);
-                List<Treasure> treasure = getEntities(Treasure.class);
+                List<Treasure> treasures = getEntities(Treasure.class);
                 List<Key> keys = getEntities(Key.class);
 
                 if (wood.size() >= 1 && arrows.size() >= 3 && !forceShield) {
@@ -73,12 +73,12 @@ public class Inventory {
                         }
                         return factory.buildBow();
 
-                } else if (wood.size() >= 2 && (treasure.size() >= 1 || keys.size() >= 1 || sunStones.size() >= 1)) {
+                } else if (wood.size() >= 2 && (treasures.size() >= 1 || keys.size() >= 1 || sunStones.size() >= 1)) {
                         if (remove) {
                                 items.remove(wood.get(0));
                                 items.remove(wood.get(1));
-                                if (treasure.size() >= 1) {
-                                        items.remove(treasure.get(0));
+                                if (treasures.size() >= 1) {
+                                        items.remove(treasures.get(0));
                                 } else {
                                         items.remove(keys.get(0));
                                 }
@@ -86,7 +86,7 @@ public class Inventory {
                         return factory.buildShield();
 
                 } else if ((wood.size() >= 1 || arrows.size() >= 2)
-                                && (keys.size() >= 1 || treasure.size() >= 1 || sunStones.size() >= 2)
+                                && (keys.size() >= 1 || treasures.size() >= 1 || sunStones.size() >= 2)
                                 && sunStones.size() >= 1) {
                         if (wood.size() >= 1) {
                                 items.remove(wood.get(0));
@@ -96,8 +96,8 @@ public class Inventory {
                         }
                         if (keys.size() >= 1) {
                                 items.remove(keys.get(0));
-                        } else if (treasure.size() >= 1) {
-                                items.remove(treasure.get(0));
+                        } else if (treasures.size() >= 1) {
+                                items.remove(treasures.get(0));
                         }
                         items.remove(sunStones.get(0));
                         return factory.buildSceptre();
@@ -110,10 +110,10 @@ public class Inventory {
                 return null;
         }
 
-        public <T extends InventoryItem> T getFirst(Class<T> itemType) {
+        public <T extends InventoryItem> T getFirst(Class<T> itemNeeded) {
                 for (InventoryItem item : items)
-                        if (itemType.isInstance(item))
-                                return itemType.cast(item);
+                        if (itemNeeded.isInstance(item))
+                                return itemNeeded.cast(item);
                 return null;
         }
 
@@ -144,9 +144,9 @@ public class Inventory {
                 return getFirst(Sword.class) != null || getFirst(Bow.class) != null;
         }
 
-        public <T> boolean hasItem(Class<T> itemType) {
+        public <T> boolean hasItem(Class<T> itemNeeded) {
                 for (InventoryItem item : items)
-                        if (itemType.isInstance(item))
+                        if (itemNeeded.isInstance(item))
                                 return true;
                 return false;
         }

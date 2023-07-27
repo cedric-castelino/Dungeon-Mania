@@ -181,12 +181,12 @@ public class Player extends Entity implements Battleable {
                 return new BattleStatistics(0, 0, 0, 1, 1, false, false);
         }
 
-        public <T> boolean hasItem(Class<T> itemType) {
-                return inventory.hasItem(itemType);
+        public <T> boolean hasItem(Class<T> itemNeeded) {
+                return inventory.hasItem(itemNeeded);
         }
 
-        public <T extends InventoryItem> T getItem(Class<T> itemType) {
-                return inventory.getFirst(itemType);
+        public <T extends InventoryItem> T getItem(Class<T> itemNeeded) {
+                return inventory.getFirst(itemNeeded);
         }
 
 }
