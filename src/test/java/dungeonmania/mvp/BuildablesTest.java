@@ -195,14 +195,15 @@ public class BuildablesTest {
 
                 // Pick up Wood
                 res = dmc.tick(Direction.RIGHT);
-                assertEquals(1, TestUtils.getInventory(res, "wood").size());
 
                 // Pick up Sun Stone
                 res = dmc.tick(Direction.RIGHT);
-                assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
 
                 // Pick up Key
                 res = dmc.tick(Direction.RIGHT);
+
+                assertEquals(1, TestUtils.getInventory(res, "wood").size());
+                assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
                 assertEquals(1, TestUtils.getInventory(res, "key").size());
 
                 // Build Sceptre
@@ -229,17 +230,18 @@ public class BuildablesTest {
                 assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
                 assertEquals(0, TestUtils.getInventory(res, "treasure").size());
 
-                // Pick up Arrows x 2
+                // Pick up Arrows twice
                 res = dmc.tick(Direction.RIGHT);
                 res = dmc.tick(Direction.RIGHT);
-                assertEquals(2, TestUtils.getInventory(res, "arrow").size());
 
                 // Pick up Sun Stone
                 res = dmc.tick(Direction.RIGHT);
-                assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
 
                 // Pick up Treasure
                 res = dmc.tick(Direction.RIGHT);
+
+                assertEquals(2, TestUtils.getInventory(res, "arrow").size());
+                assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
                 assertEquals(1, TestUtils.getInventory(res, "treasure").size());
 
                 // Build Sceptre
@@ -267,14 +269,15 @@ public class BuildablesTest {
 
                 // Pick up Wood
                 res = dmc.tick(Direction.RIGHT);
-                assertEquals(1, TestUtils.getInventory(res, "wood").size());
 
-                // Pick up Sun Stone x 2
+                // Pick up Sun Stone twice
                 res = dmc.tick(Direction.RIGHT);
                 res = dmc.tick(Direction.RIGHT);
+
+                assertEquals(1, TestUtils.getInventory(res, "wood").size());
                 assertEquals(2, TestUtils.getInventory(res, "sun_stone").size());
 
-                // Check treasure and key numbers are 0
+                // Check treasure and key numbers are equal to 0
                 assertEquals(0, TestUtils.getInventory(res, "treasure").size());
                 assertEquals(0, TestUtils.getInventory(res, "key").size());
 
@@ -283,8 +286,7 @@ public class BuildablesTest {
                 res = assertDoesNotThrow(() -> dmc.build("sceptre"));
                 assertEquals(1, TestUtils.getInventory(res, "sceptre").size());
 
-                // Materials used in construction disappear from inventory
-                // except for retained sun stone
+                // Materials used in construction disappear from inventory except for retained sun stone
                 assertEquals(0, TestUtils.getInventory(res, "wood").size());
                 assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
         }
@@ -297,11 +299,10 @@ public class BuildablesTest {
                 dmc = new DungeonManiaController();
                 DungeonResponse res = dmc.newGame("d_BuildablesTest_useSceptre", "c_BuildablesTest_useSceptre");
                 String mercId = TestUtils.getEntitiesStream(res, "mercenary").findFirst().get().getId();
+                assertEquals(1, TestUtils.getEntities(res, "mercenary").size());
 
                 // Pick up Wood
                 res = dmc.tick(Direction.RIGHT);
-                assertEquals(1, TestUtils.getEntities(res, "mercenary").size());
-                assertEquals(1, TestUtils.getInventory(res, "wood").size());
 
                 // Pick up Sun Stone
                 res = dmc.tick(Direction.RIGHT);
@@ -309,6 +310,9 @@ public class BuildablesTest {
 
                 // Pick up Key
                 res = dmc.tick(Direction.RIGHT);
+
+                assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
+                assertEquals(1, TestUtils.getInventory(res, "wood").size());
                 assertEquals(1, TestUtils.getInventory(res, "key").size());
 
                 // Build Sceptre
@@ -316,7 +320,7 @@ public class BuildablesTest {
                 res = assertDoesNotThrow(() -> dmc.build("sceptre"));
                 assertEquals(1, TestUtils.getInventory(res, "sceptre").size());
 
-                // Interact with merc and assassin and sceptre is retained
+                // Interact with merc and assassin and sceptre is kept
                 assertEquals(1, TestUtils.getInventory(res, "sceptre").size());
                 res = assertDoesNotThrow(() -> dmc.interact(mercId));
                 assertEquals(1, TestUtils.getInventory(res, "sceptre").size());

@@ -1,8 +1,8 @@
 {
         "ally_attack": 3,
         "ally_defence": 3,
-        "bomb_radius": 1,
-        "bow_durability": 1,
+        "bomb_radius": 3,
+        "bow_durability": 5,
         "bribe_amount": 1,
         "bribe_radius": 1,
         "invincibility_potion_duration": 1,
@@ -17,9 +17,9 @@
         "spider_health": 5,
         "spider_spawn_interval": 0,
         "sword_attack": 2,
-        "sword_durability": 1,
-        "treasure_goal": 1,
-        "zombie_attack": 1,
+        "sword_durability": 2,
+        "treasure_goal": 2,
+        "zombie_attack": 2,
         "zombie_health": 5,
         "zombie_spawn_interval": 0
 }

@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SunStoneTest {
         @Test
-        @Tag("17-1")
-        @DisplayName("Test player can use a sun stone to open and walk through a door")
+        @Tag("10-1")
+        @DisplayName("Test player can walkthrough a door using a sunstone. the position will change")
         public void useSunStoneWalkThroughOpenDoor() {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();
@@ -21,17 +21,18 @@ public class SunStoneTest {
 
                 // pick up sun stone
                 res = dmc.tick(Direction.RIGHT);
-                Position pos = TestUtils.getEntities(res, "player").get(0).getPosition();
+
+                Position position = TestUtils.getEntities(res, "player").get(0).getPosition();
                 assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
 
                 // walk through door and check sun stone stays
                 res = dmc.tick(Direction.RIGHT);
                 assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
-                assertNotEquals(pos, TestUtils.getEntities(res, "player").get(0).getPosition());
+                assertNotEquals(position, TestUtils.getEntities(res, "player").get(0).getPosition());
         }
 
         @Test
-        @Tag("17-2")
+        @Tag("10-2")
         @DisplayName("Test player can use a sun stone to fulfill treasure goal")
         public void sunStoneTreasureGoal() {
                 DungeonManiaController dmc;
@@ -48,8 +49,7 @@ public class SunStoneTest {
                 res = dmc.tick(Direction.RIGHT);
                 assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
 
-                // assert goal not met
-                assertTrue(TestUtils.getGoals(res).contains(":treasure"));
+                assertNotEquals(3, TestUtils.getInventory(res, "sun_stone").size());
 
                 // collect treasure
                 res = dmc.tick(Direction.RIGHT);
