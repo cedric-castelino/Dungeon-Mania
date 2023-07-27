@@ -34,6 +34,7 @@ public class Game {
         public static final int ITEM_LONGEVITY_UPDATE = 4;
 
         private ComparableCallback currentAction = null;
+        private int enemiesDestroyed = 0;
 
         private int tickCount = 0;
         private PriorityQueue<ComparableCallback> sub = new PriorityQueue<>();
@@ -83,6 +84,7 @@ public class Game {
                 }
                 if (enemy.getBattleStatistics().getHealth() <= 0) {
                         map.destroyEntity(enemy);
+                        enemiesDestroyed += 1;
                 }
         }
 
@@ -210,4 +212,9 @@ public class Game {
         public BattleFacade getBattleFacade() {
                 return battleFacade;
         }
+
+        public int getEnemiesDestroyed() {
+                return enemiesDestroyed;
+        }
+
 }

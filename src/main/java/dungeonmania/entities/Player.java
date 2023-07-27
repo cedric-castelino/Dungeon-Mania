@@ -188,5 +188,4 @@ public class Player extends Entity implements Battleable {
         public <T extends InventoryItem> T getItem(Class<T> itemNeeded) {
                 return inventory.getFirst(itemNeeded);
         }
-
 }
