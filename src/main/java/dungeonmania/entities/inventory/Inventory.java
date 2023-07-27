@@ -15,7 +15,6 @@ import dungeonmania.entities.collectables.SunStone;
 import dungeonmania.entities.collectables.Sword;
 import dungeonmania.entities.collectables.Treasure;
 import dungeonmania.entities.collectables.Wood;
-import dungeonmania.entities.enemies.ZombieToast;
 
 public class Inventory {
         private List<InventoryItem> items = new ArrayList<>();
@@ -46,7 +45,7 @@ public class Inventory {
                         result.add("shield");
                 }
 
-                if (sword >= 1 && sunStones >= 1 && getEntities(ZombieToast.class).size() == 0) {
+                if (sword >= 1 && sunStones >= 1) {
                         result.add("midnight_armour");
                 }
                 return result;
