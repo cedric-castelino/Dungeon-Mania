@@ -5,6 +5,11 @@ import dungeonmania.battles.BattleStatistics;
 import dungeonmania.entities.BattleItem;
 
 public class Shield extends Buildable implements BattleItem {
+        public static final int DEFAULT_SHIELD_HEALTH = 0;
+        public static final int DEFAULT_SHIELD_ATTACK = 0;
+        public static final int DEFAULT_SHIELD_ATTACK_MAGNIFIER = 1;
+        public static final int DEFAULT_SHIELD_DAMAGEREDUCER = 1;
+
         private int durability;
         private double defence;
 
@@ -28,7 +33,8 @@ public class Shield extends Buildable implements BattleItem {
         }
 
         private BattleStatistics createNewBattleStatistics() {
-                return new BattleStatistics(0, 0, defence, 1, 1);
+                return new BattleStatistics(DEFAULT_SHIELD_HEALTH, DEFAULT_SHIELD_ATTACK, defence,
+                                DEFAULT_SHIELD_ATTACK_MAGNIFIER, DEFAULT_SHIELD_DAMAGEREDUCER);
         }
 
         private void destroyItem(Game game) {

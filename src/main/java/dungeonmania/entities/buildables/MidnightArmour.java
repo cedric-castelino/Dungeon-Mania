@@ -5,6 +5,10 @@ import dungeonmania.battles.BattleStatistics;
 import dungeonmania.entities.BattleItem;
 
 public class MidnightArmour extends Buildable implements BattleItem {
+        public static final int DEFAULT_MIDNIGHTARMOUR_HEALTH = 0;
+        public static final int DEFAULT_MIDNIGHTARMOUR_ATTACK = 0;
+        public static final int DEFAULT_MIDNIGHTARMOUR_DAMAGEREDUCER = 0;
+
         private int midnightArmourAttack;
         private int midnightArmourDefense;
 
@@ -20,7 +24,8 @@ public class MidnightArmour extends Buildable implements BattleItem {
         }
 
         private BattleStatistics createNewBattleStatistics() {
-                return new BattleStatistics(0, 0, midnightArmourDefense, midnightArmourAttack, 0);
+                return new BattleStatistics(DEFAULT_MIDNIGHTARMOUR_HEALTH, DEFAULT_MIDNIGHTARMOUR_ATTACK,
+                                midnightArmourDefense, midnightArmourAttack, DEFAULT_MIDNIGHTARMOUR_DAMAGEREDUCER);
         }
 
         @Override
