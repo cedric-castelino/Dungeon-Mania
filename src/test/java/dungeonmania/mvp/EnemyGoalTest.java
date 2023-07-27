@@ -22,7 +22,6 @@ public class EnemyGoalTest {
 
         // assert goal not met
         assertTrue(TestUtils.getGoals(res).contains(":enemies"));
-        assertFalse(TestUtils.getGoals(res).contains(":spawner"));
 
         // move player to right
         res = dmc.tick(Direction.RIGHT);
@@ -63,8 +62,7 @@ public class EnemyGoalTest {
         assertThrows(IllegalArgumentException.class, () -> dmc.interact("random_invalid_id"));
 
         // assert goal not met
-        assertTrue(TestUtils.getGoals(res).contains(":spawner"));
-        assertFalse(TestUtils.getGoals(res).contains(":enemies"));
+        assertTrue(TestUtils.getGoals(res).contains(":enemies"));
 
         // cardinally adjacent: true, has sword: true
         res = assertDoesNotThrow(() -> dmc.interact(spawnerId));
@@ -89,7 +87,6 @@ public class EnemyGoalTest {
 
         // assert goal not met
         assertTrue(TestUtils.getGoals(res).contains(":enemies"));
-        assertTrue(TestUtils.getGoals(res).contains(":spawner"));
 
         // move player to right
         res = dmc.tick(Direction.RIGHT);
@@ -108,8 +105,7 @@ public class EnemyGoalTest {
         assertEquals(1, TestUtils.countType(res, "zombie_toast_spawner"));
 
         // assert goal not met
-        assertTrue(TestUtils.getGoals(res).contains(":spawner"));
-        assertFalse(TestUtils.getGoals(res).contains(":enemies"));
+        assertTrue(TestUtils.getGoals(res).contains(":enemies"));
 
         // move player to sword and then to spawner
         res = dmc.tick(Direction.DOWN);

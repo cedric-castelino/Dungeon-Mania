@@ -1,6 +1,7 @@
 package dungeonmania.goals.states;
 
 import dungeonmania.Game;
+import dungeonmania.entities.enemies.Spawner;
 
 public class EnemiesGoalState implements GoalState {
     private int target;
@@ -11,7 +12,7 @@ public class EnemiesGoalState implements GoalState {
 
     @Override
     public boolean achieved(Game game) {
-        return game.getEnemiesDestroyed() >= target;
+        return game.getEnemiesDestroyed() >= target && game.getMap().getEntities(Spawner.class).size() <= 0;
     }
 
     @Override

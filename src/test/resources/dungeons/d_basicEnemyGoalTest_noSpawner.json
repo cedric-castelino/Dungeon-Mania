@@ -37,14 +37,6 @@
         }
     ],
     "goal-condition": {
-        "goal": "AND",
-        "subgoals": [
-            {
-                "goal": "enemies"
-            },
-            {
-                "goal": "spawner"
-            }
-        ]
+        "goal": "enemies"
     }
 }
