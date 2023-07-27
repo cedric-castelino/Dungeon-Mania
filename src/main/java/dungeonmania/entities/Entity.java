@@ -18,12 +18,15 @@ public abstract class Entity {
     private Direction facing;
     private String entityId;
 
+    private int movementDelay;
+
     public Entity(Position position) {
         this.position = position;
         this.previousPosition = position;
         this.previousDistinctPosition = null;
         this.entityId = UUID.randomUUID().toString();
         this.facing = null;
+        this.movementDelay = 0;
     }
 
     public boolean canMoveOnto(GameMap map, Entity entity) {
@@ -34,16 +37,24 @@ public abstract class Entity {
     @Deprecated(forRemoval = true)
     public void translate(Direction direction) {
         previousPosition = this.position;
-        this.position = Position.translateBy(this.position, direction);
-        if (!previousPosition.equals(this.position)) {
-            previousDistinctPosition = previousPosition;
+        if (movementDelay == 0) {
+            this.position = Position.translateBy(this.position, direction);
+            if (!previousPosition.equals(this.position)) {
+                previousDistinctPosition = previousPosition;
+            }
+        } else {
+            this.movementDelay -= 1;
         }
     }
 
     // use setPosition
     @Deprecated(forRemoval = true)
     public void translate(Position offset) {
-        this.position = Position.translateBy(this.position, offset);
+        if (movementDelay == 0) {
+            this.position = Position.translateBy(this.position, offset);
+        } else {
+            this.movementDelay -= 1;
+        }
     }
 
     public void onOverlap(GameMap map, Entity entity) {
@@ -76,9 +87,13 @@ public abstract class Entity {
 
     public void setPosition(Position position) {
         previousPosition = this.position;
-        this.position = position;
-        if (!previousPosition.equals(this.position)) {
-            previousDistinctPosition = previousPosition;
+        if (movementDelay == 0) {
+            this.position = position;
+            if (!previousPosition.equals(this.position)) {
+                previousDistinctPosition = previousPosition;
+            }
+        } else {
+            movementDelay = movementDelay - 1;
         }
     }
 
@@ -89,4 +104,17 @@ public abstract class Entity {
     public Direction getFacing() {
         return this.facing;
     }
+
+    public void resetMovementDelay() {
+        this.movementDelay = 0;
+    }
+
+    public int getMovementDelay() {
+        return this.movementDelay;
+    }
+
+    public void setMovementDelay(int amount) {
+        this.movementDelay = amount;
+    }
+
 }
