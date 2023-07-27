@@ -46,7 +46,7 @@ public class Inventory {
                         result.add("shield");
                 }
 
-                if (sword >= 1 && sunStones >= 1 && (getEntities(ZombieToast.class).size() == 0)) {
+                if (sword >= 1 && sunStones >= 1 && getEntities(ZombieToast.class).size() == 0) {
                         result.add("midnight_armour");
                 }
                 return result;

@@ -36,6 +36,26 @@
             "y": 7
         },
         {
+            "type": "wall",
+            "x": 4,
+            "y": 6
+        },
+        {
+            "type": "wall",
+            "x": 6,
+            "y": 6
+        },
+        {
+            "type": "wall",
+            "x": 4,
+            "y": 4
+        },
+        {
+            "type": "wall",
+            "x": 6,
+            "y": 4
+        },
+        {
             "type": "zombie_toast",
             "x": 5,
             "y": 5
