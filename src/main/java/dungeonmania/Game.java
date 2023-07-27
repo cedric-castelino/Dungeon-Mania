@@ -12,7 +12,6 @@ import dungeonmania.entities.Player;
 import dungeonmania.entities.collectables.Bomb;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
-import dungeonmania.entities.enemies.ZombieToast;
 import dungeonmania.exceptions.InvalidActionException;
 import dungeonmania.goals.Goal;
 import dungeonmania.map.GameMap;
@@ -205,7 +204,4 @@ public class Game {
                 return battleFacade;
         }
 
-        public List<Entity> getEntities(Class<ZombieToast> class1) {
-                return map.getEntities();
-        }
 }

@@ -57,8 +57,13 @@
         },
         {
             "type": "zombie_toast",
-            "x": 5,
-            "y": 5
+            "x": 7,
+            "y": 7
+        },
+        {
+            "type": "zombie_toast",
+            "x": 8,
+            "y": 8
         },
         {
             "type": "exit",
