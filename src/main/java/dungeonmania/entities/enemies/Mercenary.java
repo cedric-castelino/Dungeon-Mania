@@ -152,4 +152,8 @@ public class Mercenary extends Enemy implements Interactable {
             return super.getBattleStatistics();
         return new BattleStatistics(0, allyAttack, allyDefence, 1, 1);
     }
+
+    public boolean isAdjacentToPlayer() {
+        return isAdjacentToPlayer;
+    }
 }
