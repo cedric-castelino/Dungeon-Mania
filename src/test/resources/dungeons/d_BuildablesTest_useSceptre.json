@@ -16,13 +16,18 @@
                         "y": 1
                 },
                 {
-                        "type": "sun_stone",
+                        "type": "key",
                         "x": 4,
                         "y": 1,
                         "key": 1
                 },
                 {
-                        "type": "exit",
+                        "type": "mercenary",
+                        "x": 9,
+                        "y": 5
+                },
+                {
+                        "type": "door",
                         "x": 3,
                         "y": 3,
                         "key": 1

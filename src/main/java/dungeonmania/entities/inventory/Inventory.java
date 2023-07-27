@@ -144,6 +144,13 @@ public class Inventory {
                 return getFirst(Sword.class) != null || getFirst(Bow.class) != null;
         }
 
+        public <T> boolean hasItem(Class<T> itemType) {
+                for (InventoryItem item : items)
+                        if (itemType.isInstance(item))
+                                return true;
+                return false;
+        }
+
         public BattleItem getWeapon() {
                 BattleItem weapon = getFirst(Sword.class);
                 if (weapon == null)

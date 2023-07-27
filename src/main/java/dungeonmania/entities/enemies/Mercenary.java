@@ -5,6 +5,7 @@ import dungeonmania.battles.BattleStatistics;
 import dungeonmania.entities.Entity;
 import dungeonmania.entities.Interactable;
 import dungeonmania.entities.Player;
+import dungeonmania.entities.buildables.Sceptre;
 import dungeonmania.entities.collectables.Treasure;
 import dungeonmania.entities.collectables.potions.InvincibilityPotion;
 import dungeonmania.entities.collectables.potions.InvisibilityPotion;
@@ -87,10 +88,16 @@ public class Mercenary extends Enemy implements Interactable {
 
         @Override
         public void interact(Player player, Game game) {
-                allied = true;
-                bribe(player);
-                if (!isAdjacentToPlayer && Position.isAdjacent(player.getPosition(), getPosition()))
-                        isAdjacentToPlayer = true;
+
+                if (player.hasItem(Sceptre.class)) {
+                        Sceptre sceptre = player.getItem(Sceptre.class);
+                        sceptre.interact(game, this);
+                } else {
+                        allied = true;
+                        bribe(player);
+                        if (!isAdjacentToPlayer && Position.isAdjacent(player.getPosition(), getPosition()))
+                                isAdjacentToPlayer = true;
+                }
         }
 
         private MovementStrategy movementStrategy;
@@ -128,7 +135,15 @@ public class Mercenary extends Enemy implements Interactable {
 
         @Override
         public boolean isInteractable(Player player) {
-                return !allied && canBeBribed(player);
+                if (checkSceptre(player)) {
+                        return true;
+                } else {
+                        return !allied && canBeBribed(player);
+                }
+        }
+
+        public boolean checkSceptre(Player player) {
+                return player.hasItem(Sceptre.class);
         }
 
         @Override
