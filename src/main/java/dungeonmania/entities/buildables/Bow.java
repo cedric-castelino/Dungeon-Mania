@@ -6,6 +6,11 @@ import dungeonmania.entities.BattleItem;
 
 public class Bow extends Buildable implements BattleItem {
         private int durability;
+        public static final int DEFAULT_BOW_HEALTH = 0;
+        public static final int DEFAULT_BOW_ATTACK = 0;
+        public static final int DEFAULT_BOW_DEFENCE = 0;
+        public static final int DEFAULT_BOW_ATTACK_MAGNIFIER = 2;
+        public static final int DEFAULT_BOW_DAMAGEREDUCER = 1;
 
         public Bow(int durability) {
                 super(null);
@@ -26,7 +31,8 @@ public class Bow extends Buildable implements BattleItem {
         }
 
         private BattleStatistics createNewBattleStatistics() {
-                return new BattleStatistics(0, 0, 0, 2, 1);
+                return new BattleStatistics(DEFAULT_BOW_HEALTH, DEFAULT_BOW_ATTACK, DEFAULT_BOW_DEFENCE,
+                                DEFAULT_BOW_ATTACK_MAGNIFIER, DEFAULT_BOW_DAMAGEREDUCER);
         }
 
         private void destroyItem(Game game) {
