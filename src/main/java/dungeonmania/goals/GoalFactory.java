@@ -26,8 +26,6 @@ public class GoalFactory {
         case "enemies":
             int enemyGoal = config.optInt("enemy_goal", 1);
             return new Goal(new EnemiesGoalState(enemyGoal));
-        case "spawner":
-            return new Goal(new SpawnerGoalState());
         default:
             return null;
         }
