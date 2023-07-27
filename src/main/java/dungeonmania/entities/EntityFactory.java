@@ -3,6 +3,7 @@ package dungeonmania.entities;
 import dungeonmania.Game;
 import dungeonmania.entities.buildables.Bow;
 import dungeonmania.entities.buildables.MidnightArmour;
+import dungeonmania.entities.buildables.Sceptre;
 import dungeonmania.entities.buildables.Shield;
 import dungeonmania.entities.collectables.*;
 import dungeonmania.entities.enemies.*;
@@ -128,6 +129,11 @@ public class EntityFactory {
                 return new MidnightArmour(armourAttack, armourDefence);
         }
 
+        public Sceptre buildSceptre() {
+                int mindControlDuration = config.optInt("mind_control_duration");
+                return new Sceptre(mindControlDuration);
+        }
+
         private Entity constructEntity(JSONObject jsonEntity, JSONObject config) {
                 Position pos = new Position(jsonEntity.getInt("x"), jsonEntity.getInt("y"));
 
@@ -182,6 +188,8 @@ public class EntityFactory {
                 case "midnight_armour":
                         return new MidnightArmour(jsonEntity.getInt("armour_attack"),
                                         jsonEntity.getInt("armour_defence"));
+                case "sceptre":
+                        return new Sceptre(jsonEntity.getInt("mind_control_duration"));
                 default:
                         return null;
                 }

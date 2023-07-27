@@ -2,6 +2,7 @@ package dungeonmania.entities.buildables;
 
 import dungeonmania.Game;
 import dungeonmania.battles.BattleStatistics;
+// import dungeonmania.entities.enemies.Mercenary;
 
 public class Sceptre extends Buildable {
         private int duration;
@@ -11,22 +12,24 @@ public class Sceptre extends Buildable {
                 this.duration = duration;
         }
 
+        // public void interact(Game game, Mercenary enemy) {
+        //         int tickCount = game.getTick();
+        //         enemy.setIsAllied(true);
+        //         enemy.setStopMindControlTick(tickCount + mindControlDuration);
+        // }
+
         @Override
         public BattleStatistics applyBuff(BattleStatistics origin) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'applyBuff'");
+                return null;
         }
 
         @Override
         public void use(Game game) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'use'");
         }
 
         @Override
         public int getDurability() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'getDurability'");
+                return 0;
         }
 
 }

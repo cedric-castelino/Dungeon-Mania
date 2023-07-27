@@ -45,6 +45,10 @@ public class Inventory {
                         result.add("shield");
                 }
 
+                if ((wood >= 1 || arrows >= 2) && (keys >= 1 || treasure >= 1 || sunStones >= 2) && sunStones >= 1) {
+                        result.add("sceptre");
+                }
+
                 if (sword >= 1 && sunStones >= 1) {
                         result.add("midnight_armour");
                 }
@@ -80,6 +84,25 @@ public class Inventory {
                                 }
                         }
                         return factory.buildShield();
+
+                } else if ((wood.size() >= 1 || arrows.size() >= 2)
+                                && (keys.size() >= 1 || treasure.size() >= 1 || sunStones.size() >= 2)
+                                && sunStones.size() >= 1) {
+                        if (wood.size() >= 1) {
+                                items.remove(wood.get(0));
+                        } else {
+                                items.remove(arrows.get(0));
+                                items.remove(arrows.get(1));
+                        }
+
+                        if (treasure.size() >= 1) {
+                                items.remove(treasure.get(0));
+                        } else if (keys.size() >= 1) {
+                                items.remove(keys.get(0));
+                        }
+                        items.remove(sunStones.get(0));
+                        return factory.buildSceptre();
+
                 } else if (swords.size() >= 1 && sunStones.size() >= 1) {
                         items.remove(swords.get(0));
                         items.remove(sunStones.get(0));
