@@ -129,8 +129,8 @@ public class Mercenary extends Enemy implements Interactable {
                         // Follow hostile
                         nextPos = map.dijkstraPathFind(getPosition(), player.getPosition(), this);
                 }
-                checkMindControlDuration(game);
                 map.moveTo(this, nextPos);
+                checkMindControlDuration(game);
         }
 
         @Override
