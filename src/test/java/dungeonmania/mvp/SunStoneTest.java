@@ -14,10 +14,11 @@ public class SunStoneTest {
         @Test
         @Tag("10-1")
         @DisplayName("Test player can walkthrough a door using a sunstone. the position will change")
-        public void useSunStoneWalkThroughOpenDoor() {
+        public void useSunStoneWalkThroughDoorWithSunStone() {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();
-                DungeonResponse res = dmc.newGame("d_sunStoneTest_unlockDoor", "c_sunStoneTest_unlockDoor");
+                DungeonResponse res = dmc.newGame("d_sunStoneTest_unlockDoorWithSunStone",
+                                "c_sunStoneTest_unlockDoorWithSunStone");
 
                 // pick up sun stone
                 res = dmc.tick(Direction.RIGHT);
@@ -34,10 +35,11 @@ public class SunStoneTest {
         @Test
         @Tag("10-2")
         @DisplayName("Test player can use a sun stone to fulfill treasure goal")
-        public void sunStoneTreasureGoal() {
+        public void sunStoneTreasureGoalWithSunStones() {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();
-                DungeonResponse res = dmc.newGame("d_sunStoneTest_treasureGoal", "c_sunStoneTest_treasureGoal");
+                DungeonResponse res = dmc.newGame("d_sunStoneTest_treasureGoalAchieved",
+                                "c_sunStoneTest_treasureGoalAchieved");
 
                 // move player to right
                 res = dmc.tick(Direction.RIGHT);

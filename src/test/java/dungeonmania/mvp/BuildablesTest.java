@@ -184,10 +184,11 @@ public class BuildablesTest {
         @Test
         @Tag("5-7")
         @DisplayName("Test building a sceptre with wood, key, sunstone")
-        public void buildSceptreWood() {
+        public void buildSceptreWithWood() {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();
-                DungeonResponse res = dmc.newGame("d_BuildablesTest_BuildSceptreWood", "c_BuildablesTest_buildSceptre");
+                DungeonResponse res = dmc.newGame("d_BuildablesTest_BuildSceptreWithWood",
+                                "c_BuildablesTest_buildSceptre");
                 // Assert empty inventory
                 assertEquals(0, TestUtils.getInventory(res, "wood").size());
                 assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
@@ -220,10 +221,10 @@ public class BuildablesTest {
         @Test
         @Tag("5-8")
         @DisplayName("Test building a sceptre with arrows, treasure, sunstone")
-        public void buildSceptreArrows() {
+        public void buildSceptreWithArrows() {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();
-                DungeonResponse res = dmc.newGame("d_BuildablesTest_BuildSceptreArrows",
+                DungeonResponse res = dmc.newGame("d_BuildablesTest_BuildSceptreWithArrows",
                                 "c_BuildablesTest_buildSceptre");
                 // Assert empty inventory
                 assertEquals(0, TestUtils.getInventory(res, "arrow").size());
@@ -258,10 +259,10 @@ public class BuildablesTest {
         @Test
         @Tag("5-9")
         @DisplayName("Test building a sceptre with wood, sun_stone, sun_stone")
-        public void buildSceptreSunStoneReplacement() {
+        public void buildSceptreWithSunStoneReplacement() {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();
-                DungeonResponse res = dmc.newGame("d_BuildablesTest_BuildSceptreSunStone",
+                DungeonResponse res = dmc.newGame("d_BuildablesTest_BuildSceptreWithSunStone",
                                 "c_BuildablesTest_buildSceptre");
                 // Assert empty inventory
                 assertEquals(0, TestUtils.getInventory(res, "wood").size());
@@ -294,10 +295,10 @@ public class BuildablesTest {
         @Test
         @Tag("5-10")
         @DisplayName("Test use Sceptre")
-        public void useSceptre() throws IllegalArgumentException, InvalidActionException {
+        public void sceptreUse() throws IllegalArgumentException, InvalidActionException {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();
-                DungeonResponse res = dmc.newGame("d_BuildablesTest_useSceptre", "c_BuildablesTest_useSceptre");
+                DungeonResponse res = dmc.newGame("d_BuildablesTest_SceptreUsage", "c_BuildablesTest_SceptreUsage");
                 String mercenaryId = TestUtils.getEntitiesStream(res, "mercenary").findFirst().get().getId();
                 assertEquals(1, TestUtils.getEntities(res, "mercenary").size());
 
@@ -372,7 +373,7 @@ public class BuildablesTest {
         public void buildMidnightArmourFail() {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();
-                DungeonResponse res = dmc.newGame("d_BuildablesTest_BuildMidnightArmourFail",
+                DungeonResponse res = dmc.newGame("d_BuildablesTest_BuildMidnightArmourWithZombie",
                                 "c_BuildablesTest_BuildMidnightArmour");
                 // Assert empty inventory
                 assertEquals(0, TestUtils.getInventory(res, "sword").size());
