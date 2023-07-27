@@ -182,8 +182,38 @@ public class BuildablesTest {
         }
 
         @Test
+        @Tag("5-11")
+        @DisplayName("Test building midnight armour with a sword and sun stone")
+        public void buildMidnightArmour() {
+                DungeonManiaController dmc;
+                dmc = new DungeonManiaController();
+                DungeonResponse res = dmc.newGame("d_BuildablesTest_BuildMidnightArmour",
+                                "c_BuildablesTest_BuildMidnightArmour");
+                // Assert empty inventory
+                assertEquals(0, TestUtils.getInventory(res, "sword").size());
+                assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
+
+                // Pick up Sword
+                res = dmc.tick(Direction.RIGHT);
+                assertEquals(1, TestUtils.getInventory(res, "sword").size());
+
+                // Pick up Sun Stone
+                res = dmc.tick(Direction.RIGHT);
+                assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
+
+                // Build Midnight Armour
+                assertEquals(0, TestUtils.getInventory(res, "midnight_armour").size());
+                res = assertDoesNotThrow(() -> dmc.build("midnight_armour"));
+                assertEquals(1, TestUtils.getInventory(res, "midnight_armour").size());
+
+                // Materials used in construction disappear from inventory
+                assertEquals(0, TestUtils.getInventory(res, "sword").size());
+                assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
+        }
+
+        @Test
         @Tag("5-12")
-        @DisplayName("Test building midnight armour with a sword and sun stone with zombie toasts")
+        @DisplayName("Test building midnight armour with a sword and sun stone with zombie toasts. this test fails")
         public void buildMidnightArmourFail() {
                 DungeonManiaController dmc;
                 dmc = new DungeonManiaController();

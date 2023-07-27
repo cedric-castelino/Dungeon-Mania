@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dungeonmania.Game;
 import dungeonmania.entities.BattleItem;
 import dungeonmania.entities.Entity;
 import dungeonmania.entities.EntityFactory;
@@ -30,8 +29,6 @@ public class Inventory {
                 items.remove(item);
         }
 
-        private Game game;
-
         public List<String> getBuildables() {
 
                 int wood = count(Wood.class);
@@ -49,7 +46,7 @@ public class Inventory {
                         result.add("shield");
                 }
 
-                if (sword >= 1 && sunStones >= 1 && (game.getEntities(ZombieToast.class).size() == 0)) {
+                if (sword >= 1 && sunStones >= 1 && (getEntities(ZombieToast.class).size() == 0)) {
                         result.add("midnight_armour");
                 }
                 return result;
