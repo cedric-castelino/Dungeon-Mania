@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dungeonmania.Game;
 import dungeonmania.entities.BattleItem;
 import dungeonmania.entities.Entity;
 import dungeonmania.entities.EntityFactory;
@@ -15,6 +16,7 @@ import dungeonmania.entities.collectables.SunStone;
 import dungeonmania.entities.collectables.Sword;
 import dungeonmania.entities.collectables.Treasure;
 import dungeonmania.entities.collectables.Wood;
+import dungeonmania.entities.enemies.ZombieToast;
 
 public class Inventory {
         private List<InventoryItem> items = new ArrayList<>();
@@ -28,6 +30,8 @@ public class Inventory {
                 items.remove(item);
         }
 
+        private Game game;
+
         public List<String> getBuildables() {
 
                 int wood = count(Wood.class);
@@ -35,6 +39,7 @@ public class Inventory {
                 int sunStones = count(SunStone.class);
                 int treasure = count(Treasure.class);
                 int keys = count(Key.class);
+                int sword = count(Sword.class);
                 List<String> result = new ArrayList<>();
 
                 if (wood >= 1 && arrows >= 3) {
@@ -43,6 +48,10 @@ public class Inventory {
                 if (wood >= 2 && (treasure >= 1 || keys >= 1 || sunStones >= 1)) {
                         result.add("shield");
                 }
+
+                if (sword >= 1 && sunStones >= 1 && (game.getEntities(ZombieToast.class).size() == 0)) {
+                        result.add("midnight_armour");
+                }
                 return result;
         }
 
@@ -50,6 +59,7 @@ public class Inventory {
 
                 List<Wood> wood = getEntities(Wood.class);
                 List<Arrow> arrows = getEntities(Arrow.class);
+                List<Sword> swords = getEntities(Sword.class);
                 List<SunStone> sunStones = getEntities(SunStone.class);
                 List<Treasure> treasure = getEntities(Treasure.class);
                 List<Key> keys = getEntities(Key.class);
@@ -74,6 +84,10 @@ public class Inventory {
                                 }
                         }
                         return factory.buildShield();
+                } else if (swords.size() >= 1 && sunStones.size() >= 1) {
+                        items.remove(swords.get(0));
+                        items.remove(sunStones.get(0));
+                        return factory.buildMidnightArmour();
                 }
                 return null;
         }
