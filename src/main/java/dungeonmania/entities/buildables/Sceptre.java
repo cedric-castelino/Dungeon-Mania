@@ -2,7 +2,7 @@ package dungeonmania.entities.buildables;
 
 import dungeonmania.Game;
 import dungeonmania.battles.BattleStatistics;
-// import dungeonmania.entities.enemies.Mercenary;
+import dungeonmania.entities.enemies.Mercenary;
 
 public class Sceptre extends Buildable {
         private int duration;
@@ -12,11 +12,11 @@ public class Sceptre extends Buildable {
                 this.duration = duration;
         }
 
-        // public void interact(Game game, Mercenary enemy) {
-        //         int tickCount = game.getTick();
-        //         enemy.setIsAllied(true);
-        //         enemy.setStopMindControlTick(tickCount + mindControlDuration);
-        // }
+        public void interact(Game game, Mercenary enemy) {
+                int tickCount = game.getTick();
+                enemy.setAllied(true);
+                enemy.setStopMindControlTick(tickCount + duration);
+        }
 
         @Override
         public BattleStatistics applyBuff(BattleStatistics origin) {

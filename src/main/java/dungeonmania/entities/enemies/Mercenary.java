@@ -25,6 +25,8 @@ public class Mercenary extends Enemy implements Interactable {
         private boolean allied = false;
         private boolean isAdjacentToPlayer = false;
 
+        private int stopMindControlTick = 0;
+
         public Mercenary(Position position, double health, double attack, int bribeAmount, int bribeRadius,
                         double allyAttack, double allyDefence) {
                 super(position, health, attack);
@@ -36,6 +38,25 @@ public class Mercenary extends Enemy implements Interactable {
 
         public boolean isAllied() {
                 return allied;
+        }
+
+        public void setAllied(boolean allied) {
+                this.allied = allied;
+        }
+
+        public void setStopMindControlTick(int stopMindControlTick) {
+                this.stopMindControlTick = stopMindControlTick;
+        }
+
+        public void trackMindControl(Game game) {
+                int currentTick = game.getTick();
+                if (currentTick == stopMindControlTick) {
+                        setAllied(false);
+                }
+        }
+
+        public int getStopMindControlTick() {
+                return stopMindControlTick;
         }
 
         @Override

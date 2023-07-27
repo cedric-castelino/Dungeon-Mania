@@ -88,6 +88,7 @@ public class Inventory {
                 } else if ((wood.size() >= 1 || arrows.size() >= 2)
                                 && (keys.size() >= 1 || treasure.size() >= 1 || sunStones.size() >= 2)
                                 && sunStones.size() >= 1) {
+
                         if (wood.size() >= 1) {
                                 items.remove(wood.get(0));
                         } else {
@@ -95,11 +96,12 @@ public class Inventory {
                                 items.remove(arrows.get(1));
                         }
 
-                        if (treasure.size() >= 1) {
-                                items.remove(treasure.get(0));
-                        } else if (keys.size() >= 1) {
+                        if (keys.size() >= 1) {
+                                items.remove(keys.get(0));
+                        } else {
                                 items.remove(keys.get(0));
                         }
+
                         items.remove(sunStones.get(0));
                         return factory.buildSceptre();
 
